@@ -8,7 +8,6 @@ void Command::Numerics(int num, std::string name, std::string other)
 
 	switch (num)
 	{
-        // come
 		case 1:
 			print += ":Welcome to the Internet Relay Network";
 			break;
@@ -24,37 +23,27 @@ void Command::Numerics(int num, std::string name, std::string other)
         case 5:
             print += ":are supported by this server";
             break;
-        // RPL_LISTSTART (321) https://modern.ircdocs.horse/#rplliststart-321
         case 321:
             print += "Channel :Users  Name";
             break;
-        // RPL_LIST (322) https://modern.ircdocs.horse/#rpllist-322 
-        // case 322:
-            // name chnlname participants topic 
-        // RPL_TOPIC (332) https://modern.ircdocs.horse/#rpltopic-332
         case 332:
-            print += name + " :" + other; // + setat
+            print += name + " :" + other;
             break;
-        // RPL_TOPICWHOTIME (333) https://modern.ircdocs.horse/#rpltopicwhotime-333
         case 333:
             print += name + " " + other;
             break;
-        // RPL_INVITELIST (336) https://modern.ircdocs.horse/#rplinvitelist-336
         case 336:
             print += " " + name;
             break;
-        // RPL_NAMREPLY (353) https://modern.ircdocs.horse/#rpltopicwhotime-333
         case 353:
             print += "@ " + name + " :" + other;
             break;
-        // RPL_ENDOFNAMES (366) https://modern.ircdocs.horse/#rplendofnames-366
         case 366:
             print += _caller.getNick() + " " + name + " :End of /Names list";
             break;
         case 381:
             print += ":You are now an IRC operator";
             break;
-        // ERR_NOSUCHCHANNEL (403) https://modern.ircdocs.horse/#errnosuchchannel-403
         case 401:
             print += name + " :No such nick/channel";
             break;
@@ -73,7 +62,6 @@ void Command::Numerics(int num, std::string name, std::string other)
         case 433:
             print += ":Nickname is already in use";
             break;
-        // ERR_NOTONCHANNEL (442) https://modern.ircdocs.horse/#errnotonchannel-442
         case 442:
             print += name + " :You're not on that channel";
             break;
@@ -86,11 +74,9 @@ void Command::Numerics(int num, std::string name, std::string other)
 		case 464:
 			print += ":Password incorrect";
 			break;
-        // ERR_BADCHANNELKEY (475) https://modern.ircdocs.horse/#errbadchannelkey-475
         case 475:
             print += name + " :Cannot join channel (+k)";
             break;
-        // ERR_CHANOPRIVSNEEDED (482) https://modern.ircdocs.horse/#errchanoprivsneeded-482
         case 482:
             print += name + " :You're not channel operator";
             break;

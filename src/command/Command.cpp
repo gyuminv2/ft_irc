@@ -1,13 +1,6 @@
 #include "../../include/command/Command.hpp"
 #include <iostream>
 
-// Command::Command(std::string input, std::string pass, Client &caller): _paraNum(0), _caller(caller)
-// {
-//     std::cout << input << std::endl;
-//     input_parse(input);
-//     _pass = pass + "\r\n";
-// }
-
 Command::Command(std::string input, std::string pass, Client &caller, Server &server): _paraNum(0), _caller(caller), _server(server)
 {
 	std::cout << input << std::endl;
@@ -47,7 +40,7 @@ void Command::input_parse(std::string input)
 void Command::para_parse(std::string para)
 {
 	size_t i = 0;
-	size_t j = -1;  // parsingPara[index]
+	size_t j = -1;
 	size_t pos = para.find(' ');
 
 	if (para.empty())
@@ -121,7 +114,7 @@ void Command::execute()
 		std::cout << "ERROR PASS COMMAND!" << std::endl;
 }
 
-bool    Command::checkClient(std::string name) // 찾으면 true, 못찾으면 false
+bool    Command::checkClient(std::string name)
 {
 	std::list<Client *>::iterator it = _server.getClient().begin();
     for (; it != _server.getClient().end(); ++it)
@@ -161,17 +154,3 @@ std::string Command::parseComma(std::string origin, size_t &start, size_t &pos)
 	pos = origin.find(',', start);
 	return parsedString;
 }
-
-// Channel Command::getChannelName(std::string name)
-// {
-// 	Channel tmp;
-// 	for (std::list<Channel>::iterator it = _server.getChannel().begin(); it != _server.getChannel().end(); it++)
-// 	{
-// 		if (name == (*it).getName())
-// 		{
-// 			tmp = (*it);
-// 			break ;
-// 		}
-// 	}
-// 	return (tmp);
-// };

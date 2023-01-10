@@ -1,7 +1,5 @@
 #include "../../include/command/Command.hpp"
 
-// "<client> <symbol> <channel> :[prefix]<nick>{ [prefix]<nick>}"
-
 void	Command::namesMessage(std::string name)
 {
 	std::string print;
@@ -21,15 +19,12 @@ void	Command::namesMessage(std::string name)
 		names += (*it).second + " ";
 	}
 		name = name.substr(1);
-		// 353
 		std::cout << "name " << name << " names " << names << std::endl;
 		print = ":127.0.0.1 353 " + _caller.getNick() + " @ " + name + " :" + names + " \r\n";
-		// print = ": " + _caller.getNick() + "!" + _caller.getUser() + " @127.0.0.1 " + name + " :" + names + " \r\n";
 		if (send(_caller.getSocket(), print.c_str(), strlen(print.c_str()), 0) == -1)
 			throw std::runtime_error("send 에러");
-		// 366
 		print = ":127.0.0.1 " + std::to_string(366) + " " + _caller.getNick() + " ";
-		print += _caller.getNick() + " " + name + " :End of /Names list" + "\r\n"; //"<client> <channel> :End of /NAMES list";
+		print += _caller.getNick() + " " + name + " :End of /Names list" + "\r\n";
 		if (send(_caller.getSocket(), print.c_str(), strlen(print.c_str()), 0) == -1)
 			throw std::runtime_error("send 에러7");
 }
@@ -81,8 +76,6 @@ void Command::Names()
 			}
 		}
 		if (it == chnl.end())
-			this->Numerics(401); // no such
+			this->Numerics(401);
 	}
-	// if (it == chnl.end())
-	// 	this->Numerics(442);
 }

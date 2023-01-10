@@ -26,12 +26,11 @@ class Client
     std::string _pass;
 
     std::list<Channel>		_channelList;
-    
-    //PASS
+
     bool _passState;
     bool _nickState;
     bool _userState;
-    bool _accessState;	// PASS, NICK, USER 완료 플래그
+    bool _accessState;
     bool _servOper;
 
 

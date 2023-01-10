@@ -1,11 +1,5 @@
 #include "../../include/command/Command.hpp"
 
-// :WiZ!jto@tolsun.oulu.fi KICK #Finnish John
-
-// You have been kicked out of the channel <- 쫓겨난 사람 이거 받아야됨
-
-// gyum has kicked jina () <- 다 받는 메세지 
-
 void Command::kickMessage(std::string name, std::string user)
 {
 	std::string print = ":" + _caller.getNick() + "!" + _caller.getUser() + "@127.0.0.1" + " KICK " + name + " " + user;
@@ -24,7 +18,6 @@ void Command::kickMessage(std::string name, std::string user)
 		}
 	}
 	std::map<int, std::string>::iterator it = tmp.getParticipantsFd().begin();
-	// std::cout << "size: " << tmp.getParticipantsSize() << std::endl;
 	for (; it != tmp.getParticipantsFd().end(); it++)
 	{
 		if (tmp.getParticipantsFd().end() != it && tmp.getParticipantsKey(it) != _caller.getSocket())
@@ -36,7 +29,7 @@ void Command::kickMessage(std::string name, std::string user)
 	}
 }
 
-void Command::Kick() // <channel> <user> * [<comment>]
+void Command::Kick()
 {
     std::string userName = _parsingPara[1];
 	size_t nameStart = 0;
@@ -53,7 +46,7 @@ void Command::Kick() // <channel> <user> * [<comment>]
 		if (checkChannel_caller(_parsingPara[0]) == true && _caller.getNick() == (*it).getOper())
 		{
 			userName = parseComma(_parsingPara[1], nameStart, namePos);
-			this->kickMessage(_parsingPara[0], userName);			// server channel update
+			this->kickMessage(_parsingPara[0], userName);
 			break ;
 		}
 		else
@@ -62,13 +55,4 @@ void Command::Kick() // <channel> <user> * [<comment>]
 			return ;
 		}
 	}
-
-	// while (namePos != std::string::npos)
-	// {
-	// 	userName = parseComma(_parsingPara[1], nameStart, namePos);
-    //     this->kickMessage(_parsingPara[0], userName);
-    // }
-
 }
-
-// KICK #채널 유저

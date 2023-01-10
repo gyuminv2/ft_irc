@@ -1,9 +1,5 @@
 #include "../../include/command/Command.hpp"
 
-/*
-:WiZ!jto@tolsun.oulu.fi TOPIC #test :New topic ; User Wiz setting the
-                                   topic.
-*/
 void Command::topciMessage(std::string name, std::string topic)
 {
     std::string print = ":" + _caller.getNick() + "!" + _caller.getUser() + "@127.0.0.1" + " TOPIC " + name + " :" + topic;

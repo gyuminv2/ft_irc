@@ -24,10 +24,6 @@ void	Channel::setTopicFlag(int flag) { _topicFlag = flag; }
 
 void    Channel::setOper(std::string name) { _operName = name; }
 
-// size_t	Channel::getParticipants() { return _participants; }
-
-// int	Channel::getParticipants(size_t index) { return _participantsFd[index]; }
-
 std::string Channel::getName() { return _name; }
 
 std::string Channel::getPass() { return _chnlPass; }
@@ -42,7 +38,6 @@ std::map<int, std::string> &Channel::getParticipantsFd() { return _participantsF
 
 int			Channel::getParticipantsKey(std::map<int, std::string>::iterator it) { return (*it).first; }
 std::string	Channel::getParticipantsValue(std::map<int, std::string>::iterator it) { return (*it).second; }
-// size_t		Channel::getParticipantsSize() { return _participants; }
 size_t		Channel::getParticipantsSize() { return _participantsFd.size(); }
 
 std::string Channel::getOper() { return _operName; };

@@ -6,8 +6,8 @@ int main(int ac, char **av)
     {
         if (ac != 3)
 		    throw std::runtime_error("Usage: ./ircserv <port> <password>");
-            
-        Server server(av[1], av[2]); // port, pass
+
+        Server server(av[1], av[2]);
         server.makeSock();
         server.loop();
 

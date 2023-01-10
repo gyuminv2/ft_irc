@@ -22,7 +22,7 @@ class Channel
 {
 	private:
 		std::string _name;
-		std::map<int, std::string> _participantsFd; // fd, nick
+		std::map<int, std::string> _participantsFd;
 		size_t	_participants;
 		std::string _chnlPass;
 		std::string _topic;
@@ -37,7 +37,6 @@ class Channel
 
 		bool _channelMode[10];
 
-		// set
 		void    setParticipants(size_t num, int fd, std::string name);
 		void	eraseParticipants(std::map<int, std::string>::iterator it);
 		void	setPass(std::string pass);
@@ -46,10 +45,6 @@ class Channel
 		void	setTopicFlag(int flag);
 		void    setOper(std::string name);
 
-		// get
-
-		// size_t		getParticipants();
-		// int			getParticipants(size_t index); // fd뽑
 		std::string getName();
 		std::string getPass();
 		std::string	getTopic();

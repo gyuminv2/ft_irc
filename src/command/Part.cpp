@@ -1,7 +1,5 @@
 #include "../../include/command/Command.hpp"
 
-//   :dan-!d@localhost PART #test    ; dan- is leaving the channel #test
-
 void	Command::partMessage(std::string name)
 {
 	std::string print = ":" + _caller.getNick() + "!" + _caller.getUser() + "@127.0.0.1" + " PART " + name;
@@ -20,12 +18,11 @@ void	Command::partMessage(std::string name)
 	}
 
 	std::map<int, std::string>::iterator it = tmp.getParticipantsFd().begin();
-	// std::cout << "size: " << tmp.getParticipantsSize() << std::endl;
 	for (; it != tmp.getParticipantsFd().end(); it++)
 	{
 		if (tmp.getParticipantsFd().end() != it && tmp.getParticipantsKey(it) != _caller.getSocket())
 		{
-			std::cout << "send err " << tmp.getParticipantsKey(it) << std::endl; 
+			std::cout << "send err " << tmp.getParticipantsKey(it) << std::endl;
 			print = ":" + _caller.getNick() + "!" + _caller.getUser() + "@127.0.0.1" + " PART " + name + "\r\n";
 			if (send(tmp.getParticipantsKey(it) , print.c_str(), strlen(print.c_str()), 0) == -1)
        			throw std::runtime_error("send 에러2");
@@ -33,7 +30,7 @@ void	Command::partMessage(std::string name)
 	}
 }
 
-void Command::Part() // <channel> [<reason>]
+void Command::Part()
 {
 	std::string print;
 	std::string chnlName = _parsingPara[0];
@@ -82,13 +79,11 @@ void Command::Part() // <channel> [<reason>]
 	std::list<Channel>::iterator it = _server.getChannel().begin();
 
 	std::cout << "fd: " << _caller.getSocket() << std::endl;
-	// std::cout << "size: " << _caller.getChannel().size() << std::endl;
 	if (checkChannel_caller(chnlName) == false && it != _caller.getChannel().end())
 	{
 		this->Numerics(401, chnlName);
 		return ;
 	}
-	// if (call)
 	for (; it != _server.getChannel().end(); it++)
 	{
 		if (checkChannel_caller(chnlName) == true && chnlName == (*it).getName())

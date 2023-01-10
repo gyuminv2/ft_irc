@@ -25,42 +25,38 @@ class Command
 		Server		&_server;
 
 	public:
-	// Command();
 	Command(std::string input, std::string pass, Client &caller);
 	Command(std::string input, std::string pass, Client &caller, Server &server);
 	~Command();
-
-	// void setParanum(std::string input);
 
 	void input_parse(std::string input);
 	void para_parse(std::string para);
 	void execute();
 
 	public:
-	// Client Messages
-	void Pass(); // <password>
-	void Nick(); // <nickname>
-	void User(); // <username> 0 * <realname>
-	void Quit(); // <reason>
+
+	void Pass();
+	void Nick();
+	void User();
+	void Quit();
 	void Oper();
-	// Channel Operations
-	void Join(); // <channel> (<key>)
-	void Part(); // <channel> [<reason>]
+
+	void Join();
+	void Part();
 	void Topic();
 	void Names();
-	void List(); // <channel> [<elistcond>] <- Clients MUST NOT submit an ELIST condition unless the server has explicitly defined support for that condition with the ELIST token.
+	void List();
 	void Invite();
-	void Kick(); // <channel> <user> * [<comment>]
-	// Server Queries and Commands
-	void Mode(); // <target> [<modestring>] [<mode arguments>...]
-	// Sending Messages
-	void Privmsg(); // <target> <text to be sent>
-	void Notice(); // <target> <text to be sent>
-	// Numerics
-	// void Numerics(int num);
+	void Kick();
+
+	void Mode();
+
+	void Privmsg();
+	void Notice();
+
 	void Numerics(int num, std::string name ="", std::string other ="");
 
-	bool checkClient(std::string name); // 찾으면 true, 못찾으면 false
+	bool checkClient(std::string name);
 	bool checkChannel_server(std::string name);
 	bool checkChannel_caller(std::string name);
 	bool excute_mode(char mode, char c, char flag = 0);
