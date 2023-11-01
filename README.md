@@ -324,7 +324,7 @@ UNIX® 98 Compatible Syntax
 ssize_t send(int socket_descriptor, const void *buffer, size_t buffer_length, int flags);
 ```
 ### 설명
-소켓을 통해 데이터를 전송. 타입들 ... recv랑 동일
+소켓을 통해 데이터를 전송. 타입들 . recv랑 동일
 - socket_descriptor: 쓰여질 파일 디스크립터
 - buffer: 쓰여질 정보가 저장된 포인터
 - buffer_length: 버퍼의 길이
@@ -400,7 +400,7 @@ MSG_WAITALL
 현재 파일의 오프셋을 새로운 포지션으로 변경. 새 포지션은 whence 포지션에서 offset 바이트만큼 떨어진 곳.
 lseek() 사용 후엔 I/O 오퍼레이션이 새 위치에서 시작됨.
 현재 파일의 EOF를 넘어선 곳에 새로운 파일 오프셋을 지정할 경우 이 데이터과 파일의 이전 끝 사이의 간격에서 수행되는 read 오퍼레이션이 이진수 0을 포함하는 바이트를 반환 (먼씹?)
-open()에서 O_TEXTDATA / O_CCSID 플래그가 적용된 경우 몇 가지 중요한 고려사항이 있음...
+open()에서 O_TEXTDATA / O_CCSID 플래그가 적용된 경우 몇 가지 중요한 고려사항이 있음.
 
 - file_descriptor: 파일 디스크립터
 - offset: 오프셋을 변경할 바이트 수. 음수가 들어오면 뒤로 양수가 들어오면 앞으로 움직임.
@@ -433,7 +433,7 @@ whence의 비트가 위의 값이 아닌 다른 값으로 설정되면 실패 �
  #include <unistd.h>
  #include <fcntl.h>
 
- int fcntl(int descriptor, int command, ...);
+ int fcntl(int descriptor, int command, .);
 ```
 ### 설명
 열려있는 파일 또는 소켓 디스크립터의 변수를 가져오거나 변경하는 등 다양한 작업을 수행함.
